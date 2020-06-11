@@ -3,9 +3,11 @@ import {
   PrimaryGeneratedColumn,
   Column,
   CreateDateColumn,
+  OneToMany,
 } from 'typeorm';
 
 import { Exclude } from 'class-transformer';
+import Transaction from '@modules/transactions/infra/typeorm/entities/Transaction';
 
 @Entity('users')
 class User {
@@ -17,6 +19,12 @@ class User {
 
   @Column('varchar')
   email: string;
+
+  @Column('uuid')
+  transaction_id: string;
+
+  @OneToMany(() => Transaction, transaction => transaction.id)
+  transactions: Transaction[];
 
   @Column('varchar')
   @Exclude()

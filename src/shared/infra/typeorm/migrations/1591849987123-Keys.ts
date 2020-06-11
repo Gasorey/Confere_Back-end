@@ -35,9 +35,21 @@ export default class Keys1591849987123 implements MigrationInterface {
         onUpdate: 'CASCADE',
       }),
     );
+    await queryRunner.createForeignKey(
+      'users',
+      new TableForeignKey({
+        name: 'UsersKeyToTransactionInfo',
+        columnNames: ['transaction_id'],
+        referencedTableName: 'transactions',
+        referencedColumnNames: ['id'],
+        onDelete: 'SET NULL',
+        onUpdate: 'CASCADE',
+      }),
+    );
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
+    await queryRunner.dropForeignKey('users', 'UsersKeyToTransactionInfo');
     await queryRunner.dropForeignKey('cards', 'CardKeyToTransactionInfo');
     await queryRunner.dropForeignKey(
       'transactions',
