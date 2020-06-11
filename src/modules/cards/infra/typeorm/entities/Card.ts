@@ -1,6 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
 
-import Transaction from './Transaction';
+import Transaction from '@modules/transactions/infra/typeorm/entities/Transaction';
 
 @Entity('cards')
 class Card {

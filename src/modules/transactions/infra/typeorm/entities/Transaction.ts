@@ -5,8 +5,8 @@ import {
   ManyToOne,
   JoinColumn,
 } from 'typeorm';
-import User from './User';
-import Card from './Card';
+import User from '@modules/users/infra/typeorm/entities/User';
+import Card from '@modules/cards/infra/typeorm/entities/Card';
 
 @Entity('transactions')
 class Transaction {
