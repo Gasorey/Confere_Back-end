@@ -2,9 +2,9 @@ import { sign } from 'jsonwebtoken';
 import { inject, injectable } from 'tsyringe';
 import AppError from '@shared/errors/AppError';
 import authConfig from '@config/auth';
+import IHashProvider from '@shared/providers/HashProvider/interface/IHashProvider';
 import User from '../infra/typeorm/entities/User';
 import IUsersRepository from '../repositories/IUsersRepository';
-import IHashProvider from '../providers/HashProvider/interface/IHashProvider';
 
 interface IRequest {
   email: string;

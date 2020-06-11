@@ -7,10 +7,10 @@ class Card {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column('numeric')
-  number: number;
+  @Column('varchar')
+  number: string;
 
-  @Column('date')
+  @Column('timestamp')
   expiry: Date;
 
   @Column('varchar')

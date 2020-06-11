@@ -32,6 +32,7 @@ export default class CreateCards1591831954777 implements MigrationInterface {
           {
             name: 'transaction_id',
             type: 'uuid',
+            isNullable: true,
           },
         ],
       }),
