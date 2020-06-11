@@ -15,11 +15,11 @@ export default class CreateCards1591831954777 implements MigrationInterface {
           },
           {
             name: 'number',
-            type: 'numeric',
+            type: 'varchar',
           },
           {
             name: 'expiry',
-            type: 'varchar',
+            type: 'date',
           },
           {
             name: 'cvv',

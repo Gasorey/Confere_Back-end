@@ -20,7 +20,11 @@
         "prettier"
     ],
     "rules": {
+      "prettier/prettier":"error",
       "class-methods-use-this":"off",
+      "camelcase":"off",
+      "no-useless-constructor": "off",
+      "import/no-unresolved":"off",
       "import/extensions":[
         "error",
         "ignorePackages",
