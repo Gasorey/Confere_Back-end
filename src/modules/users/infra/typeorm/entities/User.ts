@@ -21,7 +21,7 @@ class User {
   email: string;
 
   @Column('uuid')
-  transaction_id: string;
+  payment_id: string;
 
   @OneToMany(() => Transaction, transaction => transaction.id)
   transactions: Transaction[];

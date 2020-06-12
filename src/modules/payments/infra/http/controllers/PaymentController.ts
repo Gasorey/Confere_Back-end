@@ -12,7 +12,7 @@ export default class PaymentController {
 
     const createPayment = container.resolve(CreatePaymentService);
 
-    const payment = createPayment.execute({
+    const payment = await createPayment.execute({
       description,
       status,
       user_id,
@@ -26,7 +26,7 @@ export default class PaymentController {
 
     const updatePayment = container.resolve(UpdatePaymentService);
 
-    const updatedPayment = updatePayment.execute({
+    const updatedPayment = await updatePayment.execute({
       description,
       id,
       status,

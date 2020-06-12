@@ -55,11 +55,9 @@ export default class PaymentsRepository implements IPaymentsRepository {
         id,
       },
     });
-    if (!payment) {
-      throw new AppError('payment was not found');
+    if (payment) {
+      await this.ormRepository.remove(payment);
     }
-
-    await this.ormRepository.remove(payment);
   }
 
   public async findPaymentByID(id: string): Promise<Payment | undefined> {
