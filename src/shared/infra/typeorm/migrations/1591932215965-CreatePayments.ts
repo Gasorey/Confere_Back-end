@@ -14,12 +14,17 @@ export default class CreatePayments1591932215965 implements MigrationInterface {
             default: 'uuid_generate_v4()',
           },
           {
+            name: 'description',
+            type: 'varchar',
+          },
+          {
             name: 'status',
             type: 'varchar',
           },
           {
             name: 'transaction_id',
             type: 'uuid',
+            isNullable: true,
           },
           {
             name: 'user_id',
