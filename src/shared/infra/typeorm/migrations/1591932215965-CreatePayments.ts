@@ -1,36 +1,29 @@
 import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
-export default class CreateUsers1591831933308 implements MigrationInterface {
+export default class CreatePayments1591932215965 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.query(`CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`);
     await queryRunner.createTable(
       new Table({
-        name: 'users',
+        name: 'payments',
         columns: [
           {
             name: 'id',
             type: 'uuid',
-            isPrimary: true,
             generationStrategy: 'uuid',
+            isPrimary: true,
             default: 'uuid_generate_v4()',
           },
           {
-            name: 'name',
+            name: 'status',
             type: 'varchar',
           },
           {
-            name: 'email',
-            type: 'varchar',
-            isUnique: true,
-          },
-          {
-            name: 'password',
-            type: 'varchar',
-          },
-          {
-            name: 'payment_id',
+            name: 'transaction_id',
             type: 'uuid',
-            isNullable: true,
+          },
+          {
+            name: 'user_id',
+            type: 'uuid',
           },
           {
             name: 'created_at',
@@ -43,6 +36,6 @@ export default class CreateUsers1591831933308 implements MigrationInterface {
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable('users');
+    await queryRunner.dropTable('payments');
   }
 }

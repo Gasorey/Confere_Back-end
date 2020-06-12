@@ -3,12 +3,7 @@ import Transaction from '../infra/typeorm/entities/Transaction';
 
 export default interface ITransactionsRepository {
   create(data: ICreateTransactionsDTO): Promise<Transaction>;
-  findTransactionByValueDSC(
-    user_id: string,
-  ): Promise<Transaction[] | undefined>;
-  findTransactionByValueASC(
-    user_id: string,
-  ): Promise<Transaction[] | undefined>;
+  delete(id: string): Promise<void>;
   findTransactionByDescription(
     description: string,
   ): Promise<Transaction[] | undefined>;
@@ -16,4 +11,5 @@ export default interface ITransactionsRepository {
   findTransactionByInstallment(
     installment: string,
   ): Promise<Transaction[] | undefined>;
+  showTransactions(user_id: string): Promise<Transaction[] | undefined>;
 }

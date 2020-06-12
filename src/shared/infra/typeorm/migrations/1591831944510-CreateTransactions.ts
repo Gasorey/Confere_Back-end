@@ -29,16 +29,21 @@ export default class CreateTransactions1591831944510
             type: 'varchar',
           },
           {
-            name: 'installments',
+            name: 'installment',
             type: 'varchar',
             isNullable: true,
           },
           {
-            name: 'user_id',
+            name: 'card_id',
+            type: 'uuid',
+            isNullable: true,
+          },
+          {
+            name: 'payment_id',
             type: 'uuid',
           },
           {
-            name: 'card_id',
+            name: 'received_id',
             type: 'uuid',
           },
           {
