@@ -26,7 +26,7 @@ class FakeTransactionsRepository implements ITransactionsRepository {
     }
   }
 
-  public async findTransactionByDescription(
+  public async findByDescription(
     description: string,
   ): Promise<Transaction[] | undefined> {
     const findTransaction = this.transactions.filter(
@@ -36,7 +36,7 @@ class FakeTransactionsRepository implements ITransactionsRepository {
     return findTransaction;
   }
 
-  public async findTransactionByInstallment(
+  public async findByInstallment(
     installment: string,
   ): Promise<Transaction[] | undefined> {
     const findTransaction = this.transactions.filter(
@@ -46,9 +46,7 @@ class FakeTransactionsRepository implements ITransactionsRepository {
     return findTransaction;
   }
 
-  public async findTransactionByType(
-    type: string,
-  ): Promise<Transaction[] | undefined> {
+  public async findByType(type: string): Promise<Transaction[] | undefined> {
     const findTransaction = this.transactions.filter(
       transaction => transaction.type === type,
     );
@@ -56,12 +54,13 @@ class FakeTransactionsRepository implements ITransactionsRepository {
     return findTransaction;
   }
 
-  public async showTransactions(
-    user_id: string,
-  ): Promise<Transaction[] | undefined> {
-    const findTransaction = this.transactions.filter(
-      transaction => transaction.user_id === user_id,
+  public async findByPaymentId(
+    payment_id: string,
+  ): Promise<Transaction | undefined> {
+    const findTransaction = this.transactions.find(
+      transaction => transaction.payment_id === payment_id,
     );
+
     return findTransaction;
   }
 }

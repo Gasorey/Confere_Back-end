@@ -6,6 +6,7 @@ import {
   ManyToOne,
   JoinColumn,
   OneToOne,
+  UpdateDateColumn,
 } from 'typeorm';
 import User from '@modules/users/infra/typeorm/entities/User';
 import Transaction from '@modules/transactions/infra/typeorm/entities/Transaction';
@@ -29,6 +30,9 @@ class Payment {
 
   @CreateDateColumn()
   created_at: Date;
+
+  @UpdateDateColumn()
+  updated_at: Date;
 
   @ManyToOne(() => User)
   @JoinColumn({ name: 'user_id' })

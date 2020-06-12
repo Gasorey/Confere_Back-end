@@ -45,6 +45,7 @@ export default class CreateTransactions1591831944510
           {
             name: 'received_id',
             type: 'uuid',
+            isNullable: true,
           },
           {
             name: 'created_at',

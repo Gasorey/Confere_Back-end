@@ -8,6 +8,8 @@ import IHashProvider from '@shared/providers/HashProvider/interface/IHashProvide
 import BCryptHashProvider from '@shared/providers/HashProvider/implementations/BCryptHashProvider';
 import IPaymentsRepository from '@modules/payments/repositories/IPaymentsRepository';
 import PaymentsRepository from '@modules/payments/infra/typeorm/repositories/PaymentsRepository';
+import IReceivedRepository from '@modules/received/repositories/IReceivedRepository';
+import ReceivedRepository from '@modules/received/infra/typeorm/repositories/ReceivedRepository';
 
 container.registerSingleton<IUsersRepository>(
   'UsersRepository',
@@ -17,6 +19,11 @@ container.registerSingleton<IUsersRepository>(
 container.registerSingleton<IPaymentsRepository>(
   'PaymentsRepository',
   PaymentsRepository,
+);
+
+container.registerSingleton<IReceivedRepository>(
+  'ReceivedRepository',
+  ReceivedRepository,
 );
 
 container.registerSingleton<IHashProvider>('HashProvider', BCryptHashProvider);

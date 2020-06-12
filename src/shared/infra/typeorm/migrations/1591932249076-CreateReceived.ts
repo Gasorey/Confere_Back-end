@@ -20,6 +20,7 @@ export default class CreateReceived1591932249076 implements MigrationInterface {
           {
             name: 'transaction_id',
             type: 'uuid',
+            isNullable: true,
           },
           {
             name: 'received_date',

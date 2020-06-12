@@ -25,11 +25,10 @@ class CreateCardService {
     number,
   }: IRequest): Promise<Card> {
     const formatExpiry = parseISO(expiry);
-    const expiryDate = startOfMonth(formatExpiry);
     const currentDate = new Date(Date.now());
     const splitedNumber = number.slice(-4);
 
-    const isValid = isAfter(expiryDate, currentDate);
+    const isValid = isAfter(formatExpiry, currentDate);
 
     if (!isValid) {
       throw new AppError('This card is already expired');

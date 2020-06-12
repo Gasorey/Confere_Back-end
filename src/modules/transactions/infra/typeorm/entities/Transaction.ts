@@ -4,9 +4,10 @@ import {
   Column,
   ManyToOne,
   JoinColumn,
+  OneToOne,
 } from 'typeorm';
-import User from '@modules/users/infra/typeorm/entities/User';
 import Card from '@modules/cards/infra/typeorm/entities/Card';
+import Payment from '@modules/payments/infra/typeorm/entities/Payment';
 
 @Entity('transactions')
 class Transaction {
@@ -26,14 +27,14 @@ class Transaction {
   installment: string;
 
   @Column('uuid')
-  user_id: string;
-
-  @ManyToOne(() => User)
-  @JoinColumn({ name: 'user_id' })
-  user: User;
+  card_id: string;
 
   @Column('uuid')
-  card_id: string;
+  payment_id: string;
+
+  @OneToOne(() => Payment)
+  @JoinColumn({ name: 'payment_id' })
+  payment: Payment;
 
   @ManyToOne(() => Card)
   @JoinColumn({ name: 'card_id' })

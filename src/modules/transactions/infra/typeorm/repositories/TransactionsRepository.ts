@@ -20,7 +20,7 @@ class TransactionsRepository implements ITransactionsRepository {
     return transaction;
   }
 
-  public async findTransactionByDescription(
+  public async findByDescription(
     description: string,
   ): Promise<Transaction[] | undefined> {
     const transactions = await this.ormRepository.find({
@@ -31,7 +31,7 @@ class TransactionsRepository implements ITransactionsRepository {
     return transactions;
   }
 
-  public async findTransactionByInstallment(
+  public async findByInstallment(
     installment: string,
   ): Promise<Transaction[] | undefined> {
     const transactions = await this.ormRepository.find({
@@ -42,9 +42,7 @@ class TransactionsRepository implements ITransactionsRepository {
     return transactions;
   }
 
-  public async findTransactionByType(
-    type: string,
-  ): Promise<Transaction[] | undefined> {
+  public async findByType(type: string): Promise<Transaction[] | undefined> {
     const transactions = await this.ormRepository.find({
       where: {
         type,
@@ -53,15 +51,15 @@ class TransactionsRepository implements ITransactionsRepository {
     return transactions;
   }
 
-  public async showTransactions(
-    user_id: string,
-  ): Promise<Transaction[] | undefined> {
-    const transactions = await this.ormRepository.find({
+  public async findByPaymentId(
+    payment_id: string,
+  ): Promise<Transaction | undefined> {
+    const transaction = await this.ormRepository.findOne({
       where: {
-        user_id,
+        payment_id,
       },
     });
-    return transactions;
+    return transaction;
   }
 
   public async delete(id: string): Promise<void> {
