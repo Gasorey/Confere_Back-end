@@ -3,11 +3,11 @@ import { MigrationInterface, QueryRunner, TableForeignKey } from 'typeorm';
 export default class Keys1591932253599 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createForeignKey(
-      'transactions',
+      'cards',
       new TableForeignKey({
-        name: 'TransactionKeyToCardInfo',
-        columnNames: ['card_id'],
-        referencedTableName: 'cards',
+        name: 'CardKeyToTransactionInfo',
+        columnNames: ['transaction_id'],
+        referencedTableName: 'transactions',
         referencedColumnNames: ['id'],
         onDelete: 'SET NULL',
         onUpdate: 'CASCADE',
@@ -19,39 +19,6 @@ export default class Keys1591932253599 implements MigrationInterface {
         name: 'TransactionKeyToPaymentInfo',
         columnNames: ['payment_id'],
         referencedTableName: 'payments',
-        referencedColumnNames: ['id'],
-        onDelete: 'SET NULL',
-        onUpdate: 'CASCADE',
-      }),
-    );
-    await queryRunner.createForeignKey(
-      'payments',
-      new TableForeignKey({
-        name: 'PaymentKeyToTransactionInfo',
-        columnNames: ['transaction_id'],
-        referencedTableName: 'transactions',
-        referencedColumnNames: ['id'],
-        onDelete: 'SET NULL',
-        onUpdate: 'CASCADE',
-      }),
-    );
-    await queryRunner.createForeignKey(
-      'users',
-      new TableForeignKey({
-        name: 'UsersKeyToPaymentInfo',
-        columnNames: ['payment_id'],
-        referencedTableName: 'payments',
-        referencedColumnNames: ['id'],
-        onDelete: 'SET NULL',
-        onUpdate: 'CASCADE',
-      }),
-    );
-    await queryRunner.createForeignKey(
-      'transactions',
-      new TableForeignKey({
-        name: 'TransactionsKeyToReceivedInfo',
-        columnNames: ['received_id'],
-        referencedTableName: 'received',
         referencedColumnNames: ['id'],
         onDelete: 'SET NULL',
         onUpdate: 'CASCADE',
@@ -91,21 +58,9 @@ export default class Keys1591932253599 implements MigrationInterface {
 
     await queryRunner.dropForeignKey(
       'transactions',
-      'TransactionsKeyToReceivedInfo',
-    );
-
-    await queryRunner.dropForeignKey('users', 'UsersKeyToPaymentInfo');
-
-    await queryRunner.dropForeignKey('payments', 'PaymentKeyToTransactionInfo');
-
-    await queryRunner.dropForeignKey(
-      'transactions',
       'TransactionKeyToPaymentInfo',
     );
 
-    await queryRunner.dropForeignKey(
-      'transactions',
-      'TransactionKeyToCardInfo',
-    );
+    await queryRunner.dropForeignKey('cards', 'CardKeyToTransactionInfo');
   }
 }

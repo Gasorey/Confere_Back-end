@@ -23,9 +23,6 @@ class Payment {
   description: string;
 
   @Column('uuid')
-  transaction_id: string;
-
-  @Column('uuid')
   user_id: string;
 
   @CreateDateColumn()
@@ -34,12 +31,12 @@ class Payment {
   @UpdateDateColumn()
   updated_at: Date;
 
+  @OneToOne(() => Transaction, transacation => transacation.payment)
+  @JoinColumn({ name: 'id', referencedColumnName: 'payment_id' })
+  transaction: Transaction;
+
   @ManyToOne(() => User)
   @JoinColumn({ name: 'user_id' })
   user: User;
-
-  @OneToOne(() => Transaction)
-  @JoinColumn({ name: 'transaction_id' })
-  transaction: Transaction;
 }
 export default Payment;

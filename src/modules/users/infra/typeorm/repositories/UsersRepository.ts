@@ -2,6 +2,7 @@ import { getRepository, Repository } from 'typeorm';
 import User from '@modules/users/infra/typeorm/entities/User';
 import IUsersRepository from '@modules/users/repositories/IUsersRepository';
 import ICreateUsersDTO from '@modules/users/dtos/ICreateUsersDTO';
+import AppError from '@shared/errors/AppError';
 
 class UsersRepository implements IUsersRepository {
   private ormRepository: Repository<User>;
@@ -20,6 +21,7 @@ class UsersRepository implements IUsersRepository {
 
   public async findByEmail(email: string): Promise<User | undefined> {
     const user = this.ormRepository.findOne({
+      // relations: ['payments'],
       where: { email },
     });
 

@@ -69,4 +69,16 @@ export default class PaymentsRepository implements IPaymentsRepository {
 
     return payment;
   }
+
+  public async findPaymentsByUser(
+    user_id: string,
+  ): Promise<Payment[] | undefined> {
+    const payments = await this.ormRepository.find({
+      relations: ['transaction', 'transaction.received'],
+      where: {
+        user_id,
+      },
+    });
+    return payments;
+  }
 }

@@ -34,18 +34,8 @@ export default class CreateTransactions1591831944510
             isNullable: true,
           },
           {
-            name: 'card_id',
-            type: 'uuid',
-            isNullable: true,
-          },
-          {
             name: 'payment_id',
             type: 'uuid',
-          },
-          {
-            name: 'received_id',
-            type: 'uuid',
-            isNullable: true,
           },
           {
             name: 'created_at',

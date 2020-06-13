@@ -28,11 +28,6 @@ export default class CreateUsers1591831933308 implements MigrationInterface {
             type: 'varchar',
           },
           {
-            name: 'payment_id',
-            type: 'uuid',
-            isNullable: true,
-          },
-          {
             name: 'created_at',
             type: 'timestamp',
             default: 'now()',

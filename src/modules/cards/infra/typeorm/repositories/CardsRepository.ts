@@ -15,8 +15,10 @@ class CardsRepository implements ICardsRepository {
     holder,
     expiry,
     cvv,
+    transaction_id,
   }: ICreateCardDTO): Promise<Card> {
     const card = this.ormRepository.create({
+      transaction_id,
       cvv,
       expiry,
       holder,

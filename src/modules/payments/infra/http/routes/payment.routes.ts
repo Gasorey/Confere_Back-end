@@ -11,5 +11,6 @@ paymentRouter.use(ensureAuthenticated);
 paymentRouter.post('/', paymentController.create);
 paymentRouter.put('/:id', paymentController.update);
 paymentRouter.delete('/:id', paymentController.delete);
+paymentRouter.get('/', paymentController.index);
 
 export default paymentRouter;

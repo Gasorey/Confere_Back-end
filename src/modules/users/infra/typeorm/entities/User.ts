@@ -4,10 +4,11 @@ import {
   Column,
   CreateDateColumn,
   OneToMany,
+  JoinColumn,
 } from 'typeorm';
 
 import { Exclude } from 'class-transformer';
-import Transaction from '@modules/transactions/infra/typeorm/entities/Transaction';
+import Payment from '@modules/payments/infra/typeorm/entities/Payment';
 
 @Entity('users')
 class User {
@@ -20,11 +21,9 @@ class User {
   @Column('varchar')
   email: string;
 
-  @Column('uuid')
-  payment_id: string;
-
-  @OneToMany(() => Transaction, transaction => transaction.id)
-  transactions: Transaction[];
+  // @OneToMany(() => Payment, payment => payment.user_id)
+  // // @JoinColumn({ name: 'id' })
+  // payments: Payment[];
 
   @Column('varchar')
   @Exclude()

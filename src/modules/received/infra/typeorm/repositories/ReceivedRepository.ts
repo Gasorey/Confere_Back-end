@@ -14,8 +14,10 @@ export default class ReceivedRepository implements IReceivedRepository {
   public async create({
     status,
     received_date,
+    transaction_id,
   }: ICreateReceivedDTO): Promise<Received> {
     const received = this.ormRepository.create({
+      transaction_id,
       status,
       received_date,
     });

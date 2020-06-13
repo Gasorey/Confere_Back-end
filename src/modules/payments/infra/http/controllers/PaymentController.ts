@@ -3,6 +3,7 @@ import { container } from 'tsyringe';
 import CreatePaymentService from '@modules/payments/services/CreatePaymentService';
 import UpdatePaymentService from '@modules/payments/services/UpdatePaymentsService';
 import DeletePaymentService from '@modules/payments/services/DeletePaymentService';
+import IndexPaymentService from '@modules/payments/services/IndexPaymentService';
 
 export default class PaymentController {
   public async create(request: Request, response: Response): Promise<Response> {
@@ -43,5 +44,15 @@ export default class PaymentController {
     await deletePayment.execute(id);
 
     return response.status(204).send();
+  }
+
+  public async index(request: Request, response: Response): Promise<Response> {
+    const user_id = request.user.id;
+
+    const indexPayment = container.resolve(IndexPaymentService);
+
+    const payments = await indexPayment.execute(user_id);
+
+    return response.json(payments);
   }
 }

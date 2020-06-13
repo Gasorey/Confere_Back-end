@@ -7,4 +7,5 @@ export default interface IPaymentsRepository {
   findPaymentByID(id: string): Promise<Payment | undefined>;
   update(data: IUpdatePaymentDTO): Promise<Payment | undefined>;
   delete(id: string): Promise<void>;
+  findPaymentsByUser(user_id: string): Promise<Payment[] | undefined>;
 }

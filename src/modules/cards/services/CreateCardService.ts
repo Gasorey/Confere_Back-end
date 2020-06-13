@@ -3,13 +3,7 @@ import { isAfter, startOfMonth, parseISO } from 'date-fns';
 import AppError from '@shared/errors/AppError';
 import ICardsRepository from '../repositories/ICardsRepository';
 import Card from '../infra/typeorm/entities/Card';
-
-interface IRequest {
-  holder: string;
-  cvv: string;
-  number: string;
-  expiry: string;
-}
+import ICreateCardDTO from '../dtos/ICreateCardDTO';
 
 @injectable()
 class CreateCardService {
@@ -23,12 +17,12 @@ class CreateCardService {
     expiry,
     holder,
     number,
-  }: IRequest): Promise<Card> {
-    const formatExpiry = parseISO(expiry);
+  }: ICreateCardDTO): Promise<Card> {
+    // const formatExpiry = parseISO(expiry);
     const currentDate = new Date(Date.now());
     const splitedNumber = number.slice(-4);
 
-    const isValid = isAfter(formatExpiry, currentDate);
+    const isValid = isAfter(expiry, currentDate);
 
     if (!isValid) {
       throw new AppError('This card is already expired');
@@ -36,7 +30,7 @@ class CreateCardService {
 
     const card = await this.cardsRepository.create({
       cvv,
-      expiry: formatExpiry,
+      expiry,
       holder,
       number: splitedNumber,
     });
