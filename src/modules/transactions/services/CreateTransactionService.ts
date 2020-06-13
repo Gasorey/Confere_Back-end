@@ -1,6 +1,6 @@
 import { injectable, inject } from 'tsyringe';
 import IReceivedRepository from '@modules/received/repositories/IReceivedRepository';
-import { addMonths } from 'date-fns';
+import { addMonths, addDays } from 'date-fns';
 import ICardsRepository from '@modules/cards/repositories/ICardsRepository';
 import AppError from '@shared/errors/AppError';
 import ITransactionsRepository from '../repositories/ITransactionsRepository';
@@ -84,14 +84,15 @@ export default class CreateTransactionService {
         return transaction;
       }
       case 'installment_credit': {
-        if (!installment) {
-          throw new AppError('Please inform installment');
+        if (!installment || installment === 1) {
+          throw new AppError('Please have a installment higher than 1');
         }
 
         const createCard = await this.cardsRepository.create(card);
-        const tax = [...Array(6).keys()].includes(installment - 1)
-          ? 0.962
-          : 0.958;
+        // const tax = [...Array(6).keys()].includes(installment - 1)
+        //   ? 0.962
+        //   : 0.958;
+        const tax = installment <= 6 ? 0.962 : 0.958;
         const transaction = await this.transactionsRepository.create({
           payment_id,
           description,
@@ -102,11 +103,12 @@ export default class CreateTransactionService {
         });
 
         const cicles = installment;
+        const today = new Date();
         for (let i = 1; i <= cicles; i += 1) {
           this.receivedRepository.create({
             transaction_id: transaction.id,
             status: 'expected',
-            received_date: addMonths(new Date(), i),
+            received_date: addDays(today, 30 * i),
           });
         }
         return transaction;
