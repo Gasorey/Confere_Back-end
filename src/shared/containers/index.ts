@@ -10,6 +10,8 @@ import IPaymentsRepository from '@modules/payments/repositories/IPaymentsReposit
 import PaymentsRepository from '@modules/payments/infra/typeorm/repositories/PaymentsRepository';
 import IReceivedRepository from '@modules/received/repositories/IReceivedRepository';
 import ReceivedRepository from '@modules/received/infra/typeorm/repositories/ReceivedRepository';
+import ITransactionsRepository from '@modules/transactions/repositories/ITransactionsRepository';
+import TransactionsRepository from '@modules/transactions/infra/typeorm/repositories/TransactionsRepository';
 
 container.registerSingleton<IUsersRepository>(
   'UsersRepository',
@@ -19,6 +21,11 @@ container.registerSingleton<IUsersRepository>(
 container.registerSingleton<IPaymentsRepository>(
   'PaymentsRepository',
   PaymentsRepository,
+);
+
+container.registerSingleton<ITransactionsRepository>(
+  'TransactionsRepository',
+  TransactionsRepository,
 );
 
 container.registerSingleton<IReceivedRepository>(

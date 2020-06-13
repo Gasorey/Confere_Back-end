@@ -6,6 +6,6 @@ export default interface ITransactionsRepository {
   delete(id: string): Promise<void>;
   findByDescription(description: string): Promise<Transaction[] | undefined>;
   findByType(type: string): Promise<Transaction[] | undefined>;
-  findByInstallment(installment: string): Promise<Transaction[] | undefined>;
+  findByInstallment(installment: number): Promise<Transaction[] | undefined>;
   findByPaymentId(payment_id: string): Promise<Transaction | undefined>;
 }

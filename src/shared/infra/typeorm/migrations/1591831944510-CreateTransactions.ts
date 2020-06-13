@@ -30,7 +30,7 @@ export default class CreateTransactions1591831944510
           },
           {
             name: 'installment',
-            type: 'varchar',
+            type: 'integer',
             isNullable: true,
           },
           {

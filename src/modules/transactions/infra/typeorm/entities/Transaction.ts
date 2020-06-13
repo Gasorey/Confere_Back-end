@@ -23,8 +23,8 @@ class Transaction {
   @Column('varchar')
   type: string;
 
-  @Column('varchar')
-  installment: string;
+  @Column('integer')
+  installment: number;
 
   @Column('uuid')
   card_id: string;

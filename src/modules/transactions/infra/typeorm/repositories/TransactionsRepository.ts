@@ -32,7 +32,7 @@ class TransactionsRepository implements ITransactionsRepository {
   }
 
   public async findByInstallment(
-    installment: string,
+    installment: number,
   ): Promise<Transaction[] | undefined> {
     const transactions = await this.ormRepository.find({
       where: {
