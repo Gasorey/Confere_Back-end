@@ -55,6 +55,7 @@ class TransactionsRepository implements ITransactionsRepository {
     payment_id: string,
   ): Promise<Transaction | undefined> {
     const transaction = await this.ormRepository.findOne({
+      relations: ['card'],
       where: {
         payment_id,
       },

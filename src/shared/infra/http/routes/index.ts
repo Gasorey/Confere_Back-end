@@ -11,6 +11,6 @@ routes.use('/users', userRouter);
 routes.use('/login', authenticateRouter);
 routes.use('/card', cardRouter);
 routes.use('/payment', paymentRouter);
-routes.use('/transaction/:payment_id', transactionRouter);
+routes.use('/transaction', transactionRouter);
 
 export default routes;

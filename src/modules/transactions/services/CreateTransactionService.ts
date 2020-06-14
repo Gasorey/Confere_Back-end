@@ -17,7 +17,7 @@ interface IRequest {
   payment_id: string;
   value: number;
   description: string;
-  type: 'debit' | 'credit' | 'installment_credit';
+  type: 'debit' | 'credit' | 'installment_credit' | string;
   installment: undefined | number;
   card: ICard;
 }
@@ -45,14 +45,20 @@ export default class CreateTransactionService {
   }: IRequest): Promise<Transaction> {
     switch (type) {
       case 'debit': {
-        const createCard = await this.cardsRepository.create(card);
         const transaction = await this.transactionsRepository.create({
           payment_id,
           description,
           installment: undefined,
           type: 'debit',
           value: value * 0.972,
-          card_id: createCard.id,
+        });
+        const cardNumber = card.number.slice(-4);
+        await this.cardsRepository.create({
+          cvv: card.cvv,
+          expiry: card.expiry,
+          holder: card.holder,
+          number: cardNumber,
+          transaction_id: transaction.id,
         });
 
         await this.receivedRepository.create({
@@ -66,14 +72,19 @@ export default class CreateTransactionService {
       case 'credit': {
         const currentDate = new Date();
         const receivedDate = addMonths(currentDate, 1);
-        const createCard = await this.cardsRepository.create(card);
         const transaction = await this.transactionsRepository.create({
           payment_id,
           description,
           installment: 1,
           type,
           value: value * 0.968,
-          card_id: createCard.id,
+        });
+        await this.cardsRepository.create({
+          cvv: card.cvv,
+          expiry: card.expiry,
+          holder: card.holder,
+          number: card.number,
+          transaction_id: transaction.id,
         });
         await this.receivedRepository.create({
           transaction_id: transaction.id,
@@ -88,10 +99,6 @@ export default class CreateTransactionService {
           throw new AppError('Please have a installment higher than 1');
         }
 
-        const createCard = await this.cardsRepository.create(card);
-        // const tax = [...Array(6).keys()].includes(installment - 1)
-        //   ? 0.962
-        //   : 0.958;
         const tax = installment <= 6 ? 0.962 : 0.958;
         const transaction = await this.transactionsRepository.create({
           payment_id,
@@ -99,7 +106,13 @@ export default class CreateTransactionService {
           installment,
           type,
           value: value * tax,
-          card_id: createCard.id,
+        });
+        await this.cardsRepository.create({
+          cvv: card.cvv,
+          expiry: card.expiry,
+          holder: card.holder,
+          number: card.number,
+          transaction_id: transaction.id,
         });
 
         const cicles = installment;

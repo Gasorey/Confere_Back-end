@@ -74,7 +74,7 @@ export default class PaymentsRepository implements IPaymentsRepository {
     user_id: string,
   ): Promise<Payment[] | undefined> {
     const payments = await this.ormRepository.find({
-      relations: ['transaction', 'transaction.received'],
+      relations: ['transaction', 'transaction.received', 'transaction.card'],
       where: {
         user_id,
       },

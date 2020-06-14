@@ -7,6 +7,7 @@ const transactionController = new TransactionController();
 
 transactionRouter.use(ensureAuthenticated);
 
-transactionRouter.post('/', transactionController.create);
+transactionRouter.post('/:payment_id', transactionController.create);
+transactionRouter.get('/:payment_id', transactionController.index);
 
 export default transactionRouter;

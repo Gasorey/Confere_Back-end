@@ -35,6 +35,10 @@ class Transaction {
   @JoinColumn({ name: 'payment_id' })
   payment: Payment;
 
+  @OneToOne(() => Card, card => card.transaction)
+  @JoinColumn({ name: 'id', referencedColumnName: 'transaction_id' })
+  card: Card;
+
   @OneToMany(() => Received, received => received.transaction)
   @JoinColumn({ name: 'id', referencedColumnName: 'transaction_id' })
   received: Received[];

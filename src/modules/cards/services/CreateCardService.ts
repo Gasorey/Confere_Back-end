@@ -1,5 +1,5 @@
 import { injectable, inject } from 'tsyringe';
-import { isAfter, startOfMonth, parseISO } from 'date-fns';
+import { isAfter } from 'date-fns';
 import AppError from '@shared/errors/AppError';
 import ICardsRepository from '../repositories/ICardsRepository';
 import Card from '../infra/typeorm/entities/Card';
@@ -13,6 +13,7 @@ class CreateCardService {
   ) {}
 
   public async execute({
+    transaction_id,
     cvv,
     expiry,
     holder,
@@ -29,6 +30,7 @@ class CreateCardService {
     }
 
     const card = await this.cardsRepository.create({
+      transaction_id,
       cvv,
       expiry,
       holder,

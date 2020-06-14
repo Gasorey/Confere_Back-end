@@ -3,7 +3,8 @@ import ICreateTransactionsDTO from '@modules/transactions/dtos/ICreateTransactio
 import { uuid } from 'uuidv4';
 import ITransactionsRepository from '../ITransactionsRepository';
 
-class FakeTransactionsRepository implements ITransactionsRepository {
+export default class FakeTransactionsRepository
+  implements ITransactionsRepository {
   private transactions: Transaction[] = [];
 
   public async create(data: ICreateTransactionsDTO): Promise<Transaction> {
@@ -37,7 +38,7 @@ class FakeTransactionsRepository implements ITransactionsRepository {
   }
 
   public async findByInstallment(
-    installment: string,
+    installment: number,
   ): Promise<Transaction[] | undefined> {
     const findTransaction = this.transactions.filter(
       transaction => transaction.installment === installment,

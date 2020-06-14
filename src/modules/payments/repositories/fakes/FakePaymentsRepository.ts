@@ -45,4 +45,13 @@ export default class FakePaymentsRepository implements IPaymentsRepository {
     const findPayment = this.payments.find(payment => payment.id === id);
     return findPayment;
   }
+
+  public async findPaymentsByUser(
+    user_id: string,
+  ): Promise<Payment[] | undefined> {
+    const findPayment = this.payments.filter(
+      payment => payment.user_id === user_id,
+    );
+    return findPayment;
+  }
 }

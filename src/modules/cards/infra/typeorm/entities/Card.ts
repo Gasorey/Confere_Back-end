@@ -1,4 +1,11 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  OneToMany,
+  ManyToOne,
+  JoinColumn,
+} from 'typeorm';
 
 import Transaction from '@modules/transactions/infra/typeorm/entities/Transaction';
 
@@ -22,8 +29,9 @@ class Card {
   @Column('uuid')
   transaction_id: string;
 
-  @OneToMany(() => Transaction, transaction => transaction.id)
-  transactions: Transaction[];
+  @ManyToOne(() => Transaction, transaction => transaction.id)
+  @JoinColumn({ name: 'transaction_id' })
+  transaction: Transaction;
 }
 
 export default Card;

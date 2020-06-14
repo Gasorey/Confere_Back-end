@@ -1,5 +1,6 @@
 import AppError from '@shared/errors/AppError';
 import { parseISO } from 'date-fns';
+import { date } from '@hapi/joi';
 import FakeCardsRepository from '../repositories/fakes/FakeCardsRepository';
 import CreateCardService from './CreateCardService';
 
@@ -14,7 +15,7 @@ describe('CreateCard', () => {
   it('Should be able to create a card', async () => {
     const card = await createCard.execute({
       cvv: '123',
-      expiry: '2024-04',
+      expiry: new Date(2024, 4),
       holder: 'Gabriel Asorey',
       number: '123456789',
     });
@@ -24,7 +25,7 @@ describe('CreateCard', () => {
     await expect(
       createCard.execute({
         cvv: '123',
-        expiry: '2019-04',
+        expiry: new Date(2019, 4),
         holder: 'Gabriel Asorey',
         number: '123456789',
       }),
