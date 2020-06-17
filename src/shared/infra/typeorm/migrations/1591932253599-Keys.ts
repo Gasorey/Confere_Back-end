@@ -9,7 +9,7 @@ export default class Keys1591932253599 implements MigrationInterface {
         columnNames: ['transaction_id'],
         referencedTableName: 'transactions',
         referencedColumnNames: ['id'],
-        onDelete: 'SET NULL',
+        onDelete: 'CASCADE',
         onUpdate: 'CASCADE',
       }),
     );
@@ -20,7 +20,7 @@ export default class Keys1591932253599 implements MigrationInterface {
         columnNames: ['payment_id'],
         referencedTableName: 'payments',
         referencedColumnNames: ['id'],
-        onDelete: 'SET NULL',
+        onDelete: 'CASCADE',
         onUpdate: 'CASCADE',
       }),
     );
@@ -31,7 +31,7 @@ export default class Keys1591932253599 implements MigrationInterface {
         columnNames: ['transaction_id'],
         referencedTableName: 'transactions',
         referencedColumnNames: ['id'],
-        onDelete: 'SET NULL',
+        onDelete: 'CASCADE',
         onUpdate: 'CASCADE',
       }),
     );
@@ -42,7 +42,7 @@ export default class Keys1591932253599 implements MigrationInterface {
         columnNames: ['user_id'],
         referencedTableName: 'users',
         referencedColumnNames: ['id'],
-        onDelete: 'SET NULL',
+        onDelete: 'CASCADE',
         onUpdate: 'CASCADE',
       }),
     );

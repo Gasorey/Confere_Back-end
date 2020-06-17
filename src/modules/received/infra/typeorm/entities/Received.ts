@@ -19,6 +19,9 @@ class Received {
   @Column('uuid')
   transaction_id: string;
 
+  @Column({ type: 'numeric', precision: 15, scale: 2 })
+  value: number;
+
   @ManyToOne(() => Transaction, transaction => transaction.id)
   @JoinColumn({ name: 'transaction_id' })
   transaction: Transaction;

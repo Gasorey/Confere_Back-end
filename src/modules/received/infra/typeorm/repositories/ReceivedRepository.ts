@@ -12,11 +12,13 @@ export default class ReceivedRepository implements IReceivedRepository {
   }
 
   public async create({
+    value,
     status,
     received_date,
     transaction_id,
   }: ICreateReceivedDTO): Promise<Received> {
     const received = this.ormRepository.create({
+      value,
       transaction_id,
       status,
       received_date,

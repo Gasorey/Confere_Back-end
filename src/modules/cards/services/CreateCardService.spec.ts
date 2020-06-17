@@ -1,6 +1,4 @@
 import AppError from '@shared/errors/AppError';
-import { parseISO } from 'date-fns';
-import { date } from '@hapi/joi';
 import FakeCardsRepository from '../repositories/fakes/FakeCardsRepository';
 import CreateCardService from './CreateCardService';
 
@@ -14,6 +12,7 @@ describe('CreateCard', () => {
   });
   it('Should be able to create a card', async () => {
     const card = await createCard.execute({
+      transaction_id: 'fake transaction-id',
       cvv: '123',
       expiry: new Date(2024, 4),
       holder: 'Gabriel Asorey',
@@ -24,6 +23,7 @@ describe('CreateCard', () => {
   it('Should not be able to create a card with an expired card', async () => {
     await expect(
       createCard.execute({
+        transaction_id: 'fake transaction-id',
         cvv: '123',
         expiry: new Date(2019, 4),
         holder: 'Gabriel Asorey',

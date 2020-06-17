@@ -23,6 +23,13 @@ export default class CreateReceived1591932249076 implements MigrationInterface {
             isNullable: true,
           },
           {
+            name: 'value',
+            type: 'numeric',
+            precision: 15,
+            scale: 2,
+            isNullable: true,
+          },
+          {
             name: 'received_date',
             type: 'timestamp',
             default: 'now()',

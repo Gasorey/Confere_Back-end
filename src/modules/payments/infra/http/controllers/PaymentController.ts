@@ -4,6 +4,7 @@ import CreatePaymentService from '@modules/payments/services/CreatePaymentServic
 import UpdatePaymentService from '@modules/payments/services/UpdatePaymentsService';
 import DeletePaymentService from '@modules/payments/services/DeletePaymentService';
 import IndexPaymentService from '@modules/payments/services/IndexPaymentService';
+import { sendMessage, findConnections } from '@shared/infra/http/websocket';
 
 export default class PaymentController {
   public async create(request: Request, response: Response): Promise<Response> {
@@ -18,6 +19,15 @@ export default class PaymentController {
       status,
       user_id,
     });
+
+    const sendSocketMessageTo = findConnections(user_id);
+
+    sendMessage({
+      message: 'payment.create',
+      to: sendSocketMessageTo,
+      payment,
+    });
+
     return response.json(payment);
   }
 

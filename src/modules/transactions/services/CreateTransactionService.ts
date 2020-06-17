@@ -62,6 +62,7 @@ export default class CreateTransactionService {
         });
 
         await this.receivedRepository.create({
+          value: transaction.value,
           transaction_id: transaction.id,
           status: 'received',
           received_date: new Date(),
@@ -87,6 +88,7 @@ export default class CreateTransactionService {
           transaction_id: transaction.id,
         });
         await this.receivedRepository.create({
+          value: transaction.value,
           transaction_id: transaction.id,
           status: 'expected',
           received_date: receivedDate,
@@ -119,6 +121,7 @@ export default class CreateTransactionService {
         const today = new Date();
         for (let i = 1; i <= cicles; i += 1) {
           this.receivedRepository.create({
+            value: transaction.value / cicles,
             transaction_id: transaction.id,
             status: 'expected',
             received_date: addDays(today, 30 * i),
