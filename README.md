@@ -3,7 +3,7 @@
 <p>Para conseguir executar a aplicação na sua máquina, faça o clone do repositório</p>
 <p>Dentro da pasta do projeto com ele aberto no seu terminal/IDE, execute o comando "yarn"</p>
 <p>Crie uma imagem postgress no docker com o comando</p>
-<p>```docker run --name confere -e POSTGRES_PASSWORD=docker -p 5432:5432 -d postgres``` </p>
+```docker run --name confere -e POSTGRES_PASSWORD=docker -p 5432:5432 -d postgres```
 <p>na pasta raíz do projeto crie dois arquivos um ".env" e um "ormconfig.json"</p>
 <p>dentro do arquivo ".env" adicione uma sequencia de caracteres randomicos para usar de base para o JWT</p>
 <p>dentro do ormconfig.json complete o campo username, password, database com os próprios </p>
