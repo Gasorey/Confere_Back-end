@@ -2,10 +2,10 @@
   "name":"default",
   "type":"postgres",
   "host":"localhost",
-  "port":5432,
-  "username":,
-  "password":,
-  "database":,
+  "port":"Num_Port",
+  "username":"postgres",
+  "password":"docker",
+  "database":"Confere",
   "entities":[
     "./src/modules/**/infra/typeorm/entities/*.ts"
   ],
