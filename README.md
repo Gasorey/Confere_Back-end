@@ -40,3 +40,9 @@ yarn dev:server
 ````
 yarn build
 ````
+
+<h2>Rotas</h2>
+
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/245601b40e19c9c685b2)
+
+
