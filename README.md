@@ -16,23 +16,24 @@ docker run --name confere -e POSTGRES_PASSWORD=docker -p 5432:5432 -d postgres
 <p>E crie um novo banco de dados com o nome de Confere dentro da sua imagem postgres</p>
 <p>em seguida execute o comando</p>
 
-  
+  ````
   yarn typeorm migration:run
-  
+ ```` 
 <p>para rodar as migrations.</p>
 
 <h2>Testes</h2>
-
+````
 <p>yarn test</p>
-
+````
 
 <h2>Subir servidor com live-reload</h2>
 
-
+````
 yarn dev:server
+````
 
 <h2> Build</h2>
-
+````
 yarn build
-
+````
 
