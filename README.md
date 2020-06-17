@@ -22,6 +22,7 @@ docker run --name confere -e POSTGRES_PASSWORD=docker -p 5432:5432 -d postgres
 <p>para rodar as migrations.</p>
 
 <h2>Testes</h2>
+
 ````
 <p>yarn test</p>
 ````
@@ -33,6 +34,7 @@ yarn dev:server
 ````
 
 <h2> Build</h2>
+
 ````
 yarn build
 ````
